@@ -8,6 +8,7 @@ const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const SCOPE = process.env.SCOPE;
 const PORT = process.env.PORT;
+const TOKEN_URL = process.env.TOKEN_URL;
 
 app.use(cors());
 const port = PORT;
@@ -17,15 +18,7 @@ app.get("/test", (req, res) => {
 });
 
 app.get("/token", (req, res) => {
-  var url =
-    "https://login.microsoftonline.com/5fd26191-ce3b-435a-ab5c-4b9594508c45/oauth2/v2.0/token";
-  var params = new URLSearchParams();
-
-  // params.append("grant_type", "client_credentials");
-  // params.append("client_id", "ffa2f86e-6bc2-4dce-83b1-938715bcecec");
-  // params.append("client_secret", "pkj8Q~4TSmm8NtZ0Rzt_fPwClhMWUdpVRG5xgbmU");
-  // params.append("scope", "https://graph.microsoft.com/.default");
-  
+  var params = new URLSearchParams();  
   params.append("grant_type", GRANT_TYPE);
   params.append("client_id", CLIENT_ID);
   params.append("client_secret", CLIENT_SECRET);
@@ -54,7 +47,7 @@ app.get("/token", (req, res) => {
       });
   }
 
-  fetch(url, {
+  fetch(TOKEN_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
