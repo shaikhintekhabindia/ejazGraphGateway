@@ -46,4 +46,4 @@ Thumbs.db
 .scannerwork/*
 
 # Enviroments
-# .env
+.env
