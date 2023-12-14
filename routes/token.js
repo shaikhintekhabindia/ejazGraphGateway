@@ -36,7 +36,6 @@ router.get("/token", async (req, res) => {
           return response.json();
         })
         .then((data) => {
-          console.log("Users data", data.value[0]);
           res.send(data);
         })
         .catch((error) => {

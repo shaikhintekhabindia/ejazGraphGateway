@@ -41,14 +41,12 @@ router.post("/create-user", validatePostData, async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
   try {
-    console.log("inside request create user", req.body);
     const newUser = await User.create({
       client_name: req.body.client_name,
       client_data: req.body.client_data,
     });
     res.json(newUser);
   } catch (err) {
-    console.error("Error creating user:", err);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
@@ -56,7 +54,6 @@ router.post("/create-user", validatePostData, async (req, res) => {
 // Route to get all users
 router.get("/get-users", async (req, res) => {
   try {
-    console.log("inside users")
     const users = await User.findAll();
     res.json(users);
   } catch (err) {
@@ -68,7 +65,6 @@ router.get("/get-users", async (req, res) => {
 //Rroute to get single user
 router.get("/get-user", async (req, res) => {
   try {
-    console.log("client_name", req.query.client_name);
     const clientName = req.query.client_name
       ? req.query.client_name.trim()
       : "";
